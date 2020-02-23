@@ -1,0 +1,279 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %} {{ food.title }} {% endblock %}
+{% block keywords %} {{ food.keywords }} {% endblock %}
+{% block descriptions %} {{ food.descriptions }} {% endblock %}
+
+{% block body %}
+
+    <!-- breadcrumb -->
+    <div class="container">
+        <ol class="breadcrumb w3l-crumbs">
+            <li><a href=""><i class="fa fa-home"></i> Home</a></li>
+            <li class="active">{{ food.title }}'s Detail</li>
+        </ol>
+    </div>
+    <!-- //breadcrumb -->
+
+    <!-- products -->
+    <div class="products">
+        <div class="container">
+            <div class="col-md-12 product-w3ls-right">
+                <div class="product-top">
+                    <h4>Restaurant Detail</h4>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="products-row">
+
+                    <div class="span8">
+                        <div class="col-xs-6 col-sm-6 product-grids">
+                            <div>
+                                <div class="flipper agile-products">
+                                    <div>
+                                        <table class="table">
+                                            <tbody>
+                                            <tr>
+                                                <th>Title</th>
+                                                <td>{{ food.title }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Keywords</th>
+                                                <td>{{ food.keywords }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Description</th>
+                                                <td>{{ food.description }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Phone/City</th>
+                                                <td>{{ food.phone }}/{{ food.city }}</td>
+                                            </tr>
+                                            {#                                        <tr>#}
+                                            {#                                            <th>Detail</th>#}
+                                            {#                                            <td>{{ food.detail | raw }}</td>#}
+                                            {#                                        </tr>#}
+                                            </tbody>
+                                        </table>
+
+                                        <h4><a href="{{ path('home_menu') }}" class="label label-info">Back to Restaurants</a></h4>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span4">
+                        <br>
+                        <br>
+                        <br>
+                        <img src="{{ asset('uploads/images/' ~ food.image) }}" style="height:200px" >
+                    </div>
+
+                    <div class="clearfix"> </div>
+                </div>
+
+
+                <div class="grid_3 grid_5 ">
+                    <h3 class="w3ls-hdg"></h3>
+                    <div class="bs-example bs-example-tabs w3" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab" class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Foods & Prices</a></li>
+                            <li role="presentation"><a href="#detail" role="tab" id="detail-tab" data-toggle="tab" aria-controls="details">Details</a></li>
+                            <li role="presentation"><a href="#comment" role="tab" id="comment-tab" data-toggle="tab" aria-controls="comment">Comments</a></li>
+
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+                                <p>
+
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Image</th>
+                                        <th>Price</th>
+                                        <th>Quantity/Order</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for foood in fooods %}
+                                        <tr>
+                                            <td>{{ foood.title }}</td>
+                                            <td>{{ foood.description }}</td>
+                                            <td><img src="{{ asset('uploads/images/' ~ foood.image) }}" height="100"></td>
+                                            <td>{{ foood.price }}</td>
+                                            <td>
+                                                <form name="order" action="{{ path('user_ordering_new', {'rid': foood.foodid,'fid': foood.id}) }}" method="POST">
+                                                    Quantity<input type="number" id="quantity" name="quantity" value="1">
+                                                    <input type="submit" value="Order" class="btn btn-outline-primary">
+{#                                                <a href="{{ path('user_ordering_new', {'rid': foood.foodid,'fid': foood.id}) }}">Order</a>#}
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="9">no food found</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+
+                                </p>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade w3" id="detail" aria-labelledby="profile-tab">
+                                <p>
+                                    {{ food.detail |raw }}
+                                </p>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade w3" id="comment" aria-labelledby="profile-tab">
+
+                                {% for rs in comments %}
+                                    <h5>{{ rs.subject }} | Rate: {{ rs.rate }}</h5>
+                                    <p> {{ rs.comment }}</p>
+                                {% endfor %}
+
+                                <br>
+                                <br>
+                                {% if app.user %}
+
+                                {{ include('messages.html.twig') }}
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-header"><h4>New Comment</h4> </div>
+                                        <div class="card-body card-block">
+                                            <form action="{{ path('user_new_comment', {'id':food.id}) }}" method="post" role="form" class="contactForm" name="comment">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">Subject</div>
+                                                                <input type="text" id="comment_subject" name="comment[subject]" class="form-control">
+                                                                <div class="validation"></div>
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-tag"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">Rate</div>
+                                                                <select  id="comment-rate" name="comment[rate]" class="form-control">
+                                                                    <option>1</option>
+                                                                    <option>2</option>
+                                                                    <option>3</option>
+                                                                    <option>4</option>
+                                                                    <option>5</option>
+                                                                </select>
+                                                                <div class="validation"></div>
+
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-check-square-o"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-15">
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">Comment</div>
+
+                                                            <textarea id="comment_comment" name="comment[comment]" class="form-control"></textarea>
+                                                            <div class="validation"></div>
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-comment"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-actions form-group">
+                                                    <input type="hidden" name="token" value="{{ csrf_token('comment') }}" />
+                                                    <button type="submit" class="btn btn-primary btn-sm">Send Comment</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% else%}
+                                    <a href="/loginuser"><i class="fa fa-sign-in" aria-hidden="true"></i> Login for Comment</a> OR
+                                    <a href="/register"><i class="fa fa-user-plus" aria-hidden="true"></i> Signup</a>
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+
+
+                <!-- dishes -->
+                <div class="w3agile-spldishes">
+                    <div class="container">
+                        <h3 class="w3ls-title">{{ food.title }}</h3>
+                        <div class="spldishes-agileinfo">
+                            <div class="col-md-3 spldishes-w3left">
+                                <h5 class="w3ltitle">{{food.title}}</h5>
+                                <p>Vero vulputate enim non justo posuere placerat Phasellus mauris vulputate enim non justo enim .</p>
+                            </div>
+                            <div class="col-md-9 spldishes-grids">
+                                <!-- Owl-Carousel -->
+                                <div id="owl-demo" class="owl-carousel text-center agileinfo-gallery-row"><a href="" class="item g1">
+                                        <img class="lazyOwl" src=" {{ asset('uploads/images/' ~ food.image) }} " title="Our latest gallery" alt="" style="height:190px" style="width:280px"  />
+                                        <div class="agile-dish-caption">
+                                            <h4>Duis congue</h4>
+                                        </div>
+
+                                </div>
+
+                                {% for rs in slider %}
+                                    <div id="owl-demo" class="owl-carousel text-center agileinfo-gallery-row"><a href="" class="item g1">
+                                            <img class="lazyOwl" src="{{ asset('uploads/images/' ~ rs.image) }}" title="Our latest gallery" alt="" style="height:190px" style="width:280px"  />
+                                            <div class="agile-dish-caption">
+                                                <h4>Duis congue</h4>
+                                            </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //dishes -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+            {#            {{ include('user/usermenu.html.twig') }}#}
+        </div>
+    </div>
+{% endblock %}

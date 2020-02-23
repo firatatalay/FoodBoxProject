@@ -1,0 +1,45 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }}'s New Food{% endblock %}
+
+{% block body %}
+
+    <!-- breadcrumb -->
+    <div class="container">
+        <ol class="breadcrumb w3l-crumbs">
+            <li><a href=""><i class="fa fa-home"></i> Home</a></li>
+            <li class="active">{{ app.user.name }}'s Foods</li>
+        </ol>
+    </div>
+    <!-- //breadcrumb -->
+
+    <!-- products -->
+    <div class="products">
+        <div class="container">
+            <div class="col-md-9 product-w3ls-right">
+                <div class="product-top">
+                    <h4><img src="{{ asset('uploads/images/' ~ app.user.image) }}" height="30" class="img-circle"> {{ app.user.name }} {{ app.user.surname }} Foods</h4>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="products-row">
+                    <div class="col-xs-6 col-sm-12 product-grids">
+                        <div>
+                            <div class="flipper agile-products">
+                                <div>
+
+                                    <h4>Food List</h4>
+                                    <br>
+                                    {{ include('food/_form.html.twig') }}
+
+                                    <a href="{{ path('user_food_index') }}">back to list</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+
+            {{ include('user/usermenu.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

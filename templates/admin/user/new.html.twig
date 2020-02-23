@@ -1,0 +1,31 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}New User{% endblock %}
+
+{% block body %}
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- TABLO BAŞLANGICI-->
+                        <div class="map-data m-b-40">
+
+                            <h4>Create a new User</h4>
+                            <br>
+                            {{ include('admin/user/_form.html.twig') }}
+                            <br>
+                            <a href="{{ path('admin_user_index') }}" class="btn btn-outline-primary btn-sm">back to list</a>
+
+                        </div>
+                        <!-- TABLO SONU!-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

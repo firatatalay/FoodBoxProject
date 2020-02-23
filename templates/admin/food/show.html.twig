@@ -1,0 +1,72 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Food{% endblock %}
+
+{% block body %}
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- TABLO BAŞLANGICI-->
+                    <div class="map-data m-b-40">
+
+
+                        <h4>Food</h4>
+                        <br>
+                        <table class="table table-responsive">
+                            <tbody>
+                            <tr>
+                                <th>Id</th>
+                                <td>{{ food.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Title</th>
+                                <td>{{ food.title }}</td>
+                            </tr>
+                            <tr>
+                                <th>Keywords</th>
+                                <td>{{ food.keywords }}</td>
+                            </tr>
+                            <tr>
+                                <th>Description</th>
+                                <td>{{ food.description }}</td>
+                            </tr>
+                            <tr>
+                                <th>Image</th>
+                                <td><img src="{{ asset('uploads/images/' ~ food.image) }}" height="100"></td>
+                            </tr>
+                            <tr>
+                                <th>Status</th>
+                                <td>{{ food.status }}</td>
+                            </tr>
+                            <tr>
+                                <th>Created_at</th>
+                                <td>{{ food.createdAt ? food.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                            </tr>
+                            <tr>
+                                <th>Updated_at</th>
+                                <td>{{ food.updatedAt ? food.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="">
+                                <a href="{{ path('admin_food_edit', {'id': food.id}) }}" class="btn btn-outline-primary btn-sm" >Edit</a>
+                            </div>
+                            <div class="col-md-1">
+                                {{ include('admin/food/_delete_form.html.twig') }}
+                            </div>
+                            <div class="col-md-1">
+                                <a href="{{ path('admin_food_index') }}" class="btn btn-outline-primary btn-sm" >Back to List</a>
+                            </div>
+                        </div>
+
+                        <!-- TABLO SONU!-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% endblock %}

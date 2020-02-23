@@ -1,0 +1,86 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }}'s Comments{% endblock %}
+
+{% block body %}
+
+<!-- breadcrumb -->
+<div class="container">
+    <ol class="breadcrumb w3l-crumbs">
+        <li><a href=""><i class="fa fa-home"></i> Home</a></li>
+        <li class="active">{{ app.user.name }}'s Comments</li>
+    </ol>
+</div>
+<!-- //breadcrumb -->
+
+<!-- products -->
+<div class="products">
+    <div class="container">
+        <div class="col-md-9 product-w3ls-right">
+            <div class="product-top">
+                <h4><img src="{{ asset('uploads/images/' ~ app.user.image) }}" height="30" class="img-circle"> {{ app.user.name }} {{ app.user.surname }} comments</h4>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="products-row">
+                <div class="col-xs-6 col-sm-12 product-grids">
+                    <div>
+                        <div class="flipper agile-products">
+                            <div>
+
+
+                                <!-- TABLO BAŞLANGICI-->
+                                <div class="map-data m-b-40">
+                                    <h4>Comment List</h4>
+                                    <br>
+                                    <table class="table table-responsive">
+                                        <thead>
+                                        <tr>
+                                            <th>Subject</th>
+                                            <th>Comment</th>
+                                            <th>Status</th>
+                                            <th>Restaurant</th>
+                                            <th>Rate</th>
+                                            <th>Created_at</th>
+{#                                            <th>actions</th>#}
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for comment in comments %}
+                                            <tr>
+                                                <td>{{ comment.subject }}</td>
+                                                <td>{{ comment.comment }}</td>
+                                                <td>{{ comment.status }}</td>
+                                                <td><a href="{{ path('food_show', {'id': comment.foodid}) }}"> {{ comment.title }} </a> </td>
+                                                <td> {{ comment.title }} </a> </td>
+                                                <td>{{ comment.rate }}</td>
+                                                <td>{{ comment.created_at }}</td>
+{#                                                <td>#}
+{#                                                    <h4><a href="{{ path('admin_comment_delete', {'id': comment.id}) }}" class="label label-info" >Delete</a></h4>#}
+{#                                                </td>#}
+                                            </tr>
+                                        {% else %}
+                                            <tr>
+                                                <td colspan="10">no records found</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+                                <!-- TABLO SONU!-->
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+
+        {{ include('user/usermenu.html.twig') }}
+    </div>
+</div>
+        {% endblock %}

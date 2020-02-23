@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>Register!</title>
+
+    {#    JS'leri head'den include ediyoruz.#}
+    {% include ('admin/head.html.twig') %}
+</head>
+
+<body class="animsition">
+<div class="page-wrapper">
+    <div class="page-content--bge5">
+        <div class="container">
+            <div class="login-wrap">
+                <div class="login-content">
+                    <div class="login-logo">
+                        <a href="#">
+                            <img src="{{ asset('assets') }}/admin/images/icon/logo.png" alt="CoolAdmin">
+                        </a>
+                    </div>
+                    <div class="login-form">
+                        <h6>Create a new membership</h6>
+                        <br>
+
+                        {{ form_start(registrationForm) }}
+
+                        {{ form_widget(registrationForm) }}
+
+                        <div>
+                        <button class="btn btn-outline-primary btn-sm"> {{ button_label|default('Save') }} </button>
+                        </div>
+
+                        {{ form_end(registrationForm) }}
+
+                        <div class="register-link">
+                            <p>
+                                <a href="/login">Sign in</a> OR
+                            </p>
+                        </div>
+                        <div class="login-checkbox">
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Jquery JS-->
+<script src="{{ asset('assets') }}/admin/vendor/jquery-3.2.1.min.js"></script>
+<!-- Bootstrap JS-->
+<script src="{{ asset('assets') }}/admin/vendor/bootstrap-4.1/popper.min.js"></script>
+<script src="{{ asset('assets') }}/admin/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+<!-- Vendor JS       -->
+<script src="{{ asset('assets') }}/admin/vendor/slick/slick.min.js">
+</script>
+<script src="{{ asset('assets') }}/admin/vendor/wow/wow.min.js"></script>
+<script src="{{ asset('assets') }}/admin/vendor/animsition/animsition.min.js"></script>
+<script src="{{ asset('assets') }}/admin/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+</script>
+<script src="{{ asset('assets') }}/admin/vendor/counter-up/jquery.waypoints.min.js"></script>
+<script src="{{ asset('assets') }}/admin/vendor/counter-up/jquery.counterup.min.js">
+</script>
+<script src="{{ asset('assets') }}/admin/vendor/circle-progress/circle-progress.min.js"></script>
+<script src="{{ asset('assets') }}/admin/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="{{ asset('assets') }}/admin/vendor/chartjs/Chart.bundle.min.js"></script>
+<script src="{{ asset('assets') }}/admin/vendor/select2/select2.min.js"></script>
+<!-- Main JS-->
+<script src="{{ asset('assets') }}/admin/js/main.js"></script>
+
+</body>
+
+</html>
+<!-- end document-->

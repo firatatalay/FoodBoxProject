@@ -1,0 +1,94 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Orders{% endblock %}
+
+{% block body %}
+    <!-- GALLERY BUTONU EKLEMEK ICIN GEREKLI OLAN SCRIPT  -->
+    <SCRIPT language="JavaScript" type="text/javascript">
+        function openWin(windowURL,windowName,windowFeatures){ window.open(windowURL,windowName,windowFeatures); }
+    </SCRIPT>
+
+
+
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- TABLO BAŞLANGICI-->
+                        <div class="map-data m-b-40">
+
+                            <h1>Ordering index</h1>
+
+                            <table class="table table-responsive">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Userid</th>
+                                    <th>Foodid</th>
+                                    <th>Fooodid</th>
+                                    <th>Name</th>
+                                    <th>Surname</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Ordertime</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th>Ip</th>
+                                    <th>Message</th>
+                                    <th>Note</th>
+                                    <th>Status</th>
+                                    <th>Created_at</th>
+                                    <th>Updated_at</th>
+                                    <th>actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for ordering in orderings %}
+                                    <tr>
+                                        <td>{{ ordering.id }}</td>
+                                        <td>{{ ordering.userid }}</td>
+                                        <td>{{ ordering.foodid }}</td>
+                                        <td>{{ ordering.fooodid }}</td>
+                                        <td>{{ ordering.name }}</td>
+                                        <td>{{ ordering.surname }}</td>
+                                        <td>{{ ordering.email }}</td>
+                                        <td>{{ ordering.phone }}</td>
+                                        <td>{{ ordering.ordertime ? ordering.ordertime|date('Y-m-d H:i:s') : '' }}</td>
+                                        <td>{{ ordering.quantity }}</td>
+                                        <td>{{ ordering.total }}</td>
+                                        <td>{{ ordering.ip }}</td>
+                                        <td>{{ ordering.message }}</td>
+                                        <td>{{ ordering.note }}</td>
+                                        <td>{{ ordering.status }}</td>
+                                        <td>{{ ordering.createdAt ? ordering.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                                        <td>{{ ordering.updatedAt ? ordering.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_ordering_show', {'id': ordering.id}) }}">show</a>
+                                            <a href="{{ path('admin_ordering_edit', {'id': ordering.id}) }}">edit</a>
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="18">no records found</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+{#                            <a href="{{ path('admin_ordering_new') }}">Create new</a>#}
+
+
+
+
+                        </div>
+                        <!-- TABLO SONU!-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

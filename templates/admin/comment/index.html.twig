@@ -1,0 +1,70 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Index Comment{% endblock %}
+
+{% block body %}
+
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- TABLO BAŞLANGICI-->
+                        <div class="map-data m-b-40">
+                            <h4>Comment List</h4>
+                            <br>
+                            <table class="table table-responsive">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Subject</th>
+                                    <th>Comment</th>
+                                    <th>Status</th>
+                                    <th>Ip</th>
+                                    <th>User</th>
+                                    <th>Restaurant</th>
+                                    <th>Rate</th>
+                                    <th>Updated_at</th>
+                                    <th>actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for comment in comments %}
+                                    <tr>
+                                        <td>{{ comment.id }}</td>
+                                        <td>{{ comment.subject }}</td>
+                                        <td>{{ comment.comment }}</td>
+                                        <td>{{ comment.status }}</td>
+                                        <td>{{ comment.ip }}</td>
+                                        <td><a href="{{ path('admin_user_show', {'id': comment.userid}) }}"> {{ comment.name }} {{ comment.surname }} </a> </td>
+                                        <td><a href="{{ path('admin_food_show', {'id': comment.id}) }}"> {{ comment.title }} </td>
+
+{#                                        <td>{{ comment.name }} {{ comment.surname }}</td>#}
+{#                                        <td>{{ comment.title }} </td>#}
+                                        <td>{{ comment.rate }}</td>
+                                        <td>{{ comment.updated_at }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_comment_show', {'id': comment.id}) }}" class="btn btn-outline-primary btn-sm" >show</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_comment_edit', {'id': comment.id}) }}" class="btn btn-outline-primary btn-sm" >edit</a>
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="10">no records found</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                        <!-- TABLO SONU!-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

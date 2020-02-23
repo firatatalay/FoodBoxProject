@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Foood index{% endblock %}
+
+{% block body %}
+    <h1>Foood index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Foodid</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Numberoffood</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for foood in fooods %}
+            <tr>
+                <td>{{ foood.id }}</td>
+                <td>{{ foood.title }}</td>
+                <td>{{ foood.foodid }}</td>
+                <td>{{ foood.description }}</td>
+                <td>{{ foood.image }}</td>
+                <td>{{ foood.price }}</td>
+                <td>{{ foood.status }}</td>
+                <td>{{ foood.numberoffood }}</td>
+                <td>
+                    <a href="{{ path('admin_foood_show', {'id': foood.id}) }}">show</a>
+                    <a href="{{ path('admin_foood_edit', {'id': foood.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

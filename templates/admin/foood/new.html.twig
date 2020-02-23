@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <h4></h4>
+    <h5>Add new Food</h5>
+
+    {{ include('admin/foood/_form.html.twig') }}
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Foodid</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Numberoffood</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for foood in fooods %}
+            <tr>
+                <td>{{ foood.id }}</td>
+                <td>{{ foood.title }}</td>
+                <td>{{ foood.foodid }}</td>
+                <td>{{ foood.description }}</td>
+                <td><img src="{{ asset('uploads/images/' ~ foood.image) }}" height="60"></td>
+                <td>{{ foood.price }}</td>
+                <td>{{ foood.status }}</td>
+                <td>{{ foood.numberoffood }}</td>
+                <td>
+
+                    <form method="post" action="{{ path('admin_foood_delete', {'id': foood.id, 'hid': food.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ foood.id) }}">
+                        <button class="btn btn-outline-danger">Delete</button>
+                    </form>
+
+
+
+                </td>
+                <td>
+{#                    <a href="{{ path('admin_foood_show', {'id': foood.id}) }}">show</a>#}
+                    <a href="{{ path('admin_foood_edit', {'id': foood.id, 'hid': food.id}) }}" class="btn btn-outline-primary">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+{% endblock %}

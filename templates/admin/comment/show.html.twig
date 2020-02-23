@@ -1,0 +1,71 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Show Comment{% endblock %}
+
+{% block body %}
+
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- TABLO BAŞLANGICI-->
+                        <div class="map-data m-b-40">
+                            <h4>Show Comment</h4>
+                            <br>
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th>Id</th>
+                                    <td>{{ comment.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Subject</th>
+                                    <td>{{ comment.subject }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Comment</th>
+                                    <td>{{ comment.comment }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Status</th>
+                                    <td>{{ comment.status }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Ip</th>
+                                    <td>{{ comment.ip }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Userid</th>
+                                    <td>{{ comment.userid }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Created_at</th>
+                                    <td>{{ comment.createdAt ? comment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Updated_at</th>
+                                    <td>{{ comment.updatedAt ? comment.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Rate</th>
+                                    <td>{{ comment.rate }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <a href="{{ path('admin_comment_index') }}" class="btn btn-outline-primary btn-sm" >back to list</a>
+
+                            <a href="{{ path('admin_comment_edit', {'id': comment.id}) }}" class="btn btn-outline-primary btn-sm" >edit</a>
+
+                            {{ include('admin/comment/_delete_form.html.twig') }}
+
+                        </div>
+                        <!-- TABLO SONU!-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

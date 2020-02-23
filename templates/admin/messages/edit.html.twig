@@ -1,0 +1,31 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Edit Message{% endblock %}
+
+{% block body %}
+
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- TABLO BAŞLANGICI-->
+                        <div class="map-data m-b-40">
+                            <h4>Edit Message</h4>
+                            <br>
+                            {{ include('admin/messages/_form.html.twig', {'button_label': 'Update'}) }}
+
+                            <a href="{{ path('admin_messages_index') }}" class="btn btn-outline-primary btn-sm" >Back to List</a>
+
+                            {{ include('admin/messages/_delete_form.html.twig') }}
+
+                        </div>
+                        <!-- TABLO SONU!-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="{% block keywords %}sipariş, yemek, kahvaltı, akşam yemeği,
+         foods, dinner, lunch, breakfast, order{% endblock %}" />
+
+        <meta name="description" content="{% block description %}Content{% endblock %}" />
+        <meta name="author" content="FIRAT ATALAY" />
+
+
+        {% block head %} {% include('home/head.html.twig') %} {% endblock %}
+    </head>
+    <body>
+        {% block header %} {% include('home/header.html.twig') %} {% endblock %}
+        {% block sidebar %}  {% endblock %}
+        {% block slider %}  {% endblock %}
+        {% block body %}  {% endblock %}
+        {% block footer %} {% include('home/footer.html.twig') %} {% endblock %}
+        {% block javascripts %} {% include('home/javascript.html.twig') %}  {% endblock %}
+
+    </body>
+</html>

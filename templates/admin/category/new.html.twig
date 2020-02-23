@@ -1,0 +1,33 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}New Category{% endblock %}
+
+{% block body %}
+
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- TABLO BAŞLANGICI-->
+                        <div class="map-data m-b-40">
+
+
+
+                            <h4>Create New Category</h4>
+                            <br>
+                            {{ include('admin/category/_form.html.twig') }}
+
+                            <a href="{{ path('category_index') }}" class="btn btn-outline-primary btn-sm">Back to List</a>
+
+
+
+                        </div>
+                        <!-- TABLO SONU!-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

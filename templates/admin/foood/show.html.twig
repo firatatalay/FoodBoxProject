@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Foood{% endblock %}
+
+{% block body %}
+    <h1>Foood</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ foood.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ foood.title }}</td>
+            </tr>
+            <tr>
+                <th>Foodid</th>
+                <td>{{ foood.foodid }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ foood.description }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ foood.image }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ foood.price }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ foood.status }}</td>
+            </tr>
+            <tr>
+                <th>Numberoffood</th>
+                <td>{{ foood.numberoffood }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_foood_index') }}">back to list</a>
+
+    <a href="{{ path('admin_foood_edit', {'id': foood.id}) }}">edit</a>
+
+    {{ include('admin/foood/_delete_form.html.twig') }}
+{% endblock %}

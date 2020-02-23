@@ -1,0 +1,93 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }}'s Food Show{% endblock %}
+
+{% block body %}
+
+    <!-- breadcrumb -->
+    <div class="container">
+        <ol class="breadcrumb w3l-crumbs">
+            <li><a href=""><i class="fa fa-home"></i> Home</a></li>
+            <li class="active">{{ app.user.name }}'s Food Detail</li>
+        </ol>
+    </div>
+    <!-- //breadcrumb -->
+
+    <!-- products -->
+    <div class="products">
+        <div class="container">
+            <div class="col-md-9 product-w3ls-right">
+                <div class="product-top">
+                    <h4><img src="{{ asset('uploads/images/' ~ app.user.image) }}" height="30" class="img-circle"> {{ app.user.name }} {{ app.user.surname }} Food Detail</h4>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="products-row">
+                    <div class="col-xs-6 col-sm-12 product-grids">
+                        <div>
+                            <div class="flipper agile-products">
+                                <div>
+
+                                    <table class="table">
+                                        <tbody>
+                                        <tr>
+                                            <th>Id</th>
+                                            <td>{{ food.id }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Title</th>
+                                            <td>{{ food.title }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Keywords</th>
+                                            <td>{{ food.keywords }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Description</th>
+                                            <td>{{ food.description }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Image</th>
+                                            <td>{{ food.image }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Status</th>
+                                            <td>{{ food.status }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Created_at</th>
+                                            <td>{{ food.createdAt ? food.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Updated_at</th>
+                                            <td>{{ food.updatedAt ? food.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Detail</th>
+                                            <td>{{ food.detail }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Userid</th>
+                                            <td>{{ food.userid }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <h4><a href="{{ path('user_food_index') }}" class="label label-info">Back to List</a></h4>
+                                    <br>
+                                    <h4><a href="{{ path('user_food_edit', {'id': food.id}) }}" class="label label-info">Edit</a></h4>
+                                    <br>
+                                    {{ include('food/_delete_form.html.twig') }}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+
+            {{ include('user/usermenu.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

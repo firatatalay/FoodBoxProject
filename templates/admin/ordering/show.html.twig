@@ -1,0 +1,115 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Order List{% endblock %}
+
+{% block body %}
+    <!-- GALLERY BUTONU EKLEMEK ICIN GEREKLI OLAN SCRIPT  -->
+    <SCRIPT language="JavaScript" type="text/javascript">
+        function openWin(windowURL,windowName,windowFeatures){ window.open(windowURL,windowName,windowFeatures); }
+    </SCRIPT>
+
+
+
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- TABLO BAŞLANGICI-->
+                        <div class="map-data m-b-40">
+
+                            <h1>Ordering</h1>
+
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th>Id</th>
+                                    <td>{{ ordering.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Userid</th>
+                                    <td>{{ ordering.userid }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Foodid</th>
+                                    <td>{{ ordering.foodid }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Fooodid</th>
+                                    <td>{{ ordering.fooodid }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Name</th>
+                                    <td>{{ ordering.name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Surname</th>
+                                    <td>{{ ordering.surname }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td>{{ ordering.email }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Phone</th>
+                                    <td>{{ ordering.phone }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Ordertime</th>
+                                    <td>{{ ordering.ordertime ? ordering.ordertime|date('Y-m-d H:i:s') : '' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Quantity</th>
+                                    <td>{{ ordering.quantity }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Total</th>
+                                    <td>{{ ordering.total }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Ip</th>
+                                    <td>{{ ordering.ip }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Message</th>
+                                    <td>{{ ordering.message }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Note</th>
+                                    <td>{{ ordering.note }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Status</th>
+                                    <td>{{ ordering.status }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Created_at</th>
+                                    <td>{{ ordering.createdAt ? ordering.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Updated_at</th>
+                                    <td>{{ ordering.updatedAt ? ordering.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <a href="{{ path('admin_ordering_index') }}">back to list</a>
+
+                            <a href="{{ path('admin_ordering_edit', {'id': ordering.id}) }}">edit</a>
+
+                            {{ include('admin/ordering/_delete_form.html.twig') }}
+
+
+
+
+                        </div>
+                        <!-- TABLO SONU!-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

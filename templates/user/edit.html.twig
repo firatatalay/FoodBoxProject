@@ -1,0 +1,43 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }}'s Profile{% endblock %}
+
+{% block body %}
+
+    <!-- breadcrumb -->
+    <div class="container">
+        <ol class="breadcrumb w3l-crumbs">
+            <li><a href=""><i class="fa fa-home"></i> Home</a></li>
+            <li class="active">{{ app.user.name }} Profile</li>
+        </ol>
+    </div>
+    <!-- //breadcrumb -->
+
+    <!-- products -->
+    <div class="products">
+        <div class="container">
+            <div class="col-md-9 product-w3ls-right">
+                <div class="product-top">
+                    <h4>{{ app.user.name }} {{ app.user.surname }}</h4>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="products-row">
+                    <div class="col-xs-6 col-sm-12 product-grids">
+                        <div>
+                            <div class="flipper agile-products">
+                                <div>
+
+                                    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+
+            {{ include('user/usermenu.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

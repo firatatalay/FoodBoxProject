@@ -1,0 +1,112 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }}'s Profile{% endblock %}
+
+{% block body %}
+
+    <!-- breadcrumb -->
+    <div class="container">
+        <ol class="breadcrumb w3l-crumbs">
+            <li><a href=""><i class="fa fa-home"></i> Home</a></li>
+            <li class="active">{{ app.user.name }} </li>
+        </ol>
+    </div>
+    <!-- //breadcrumb -->
+
+    <!-- products -->
+    <div class="products">
+        <div class="container">
+            <div class="col-md-9 product-w3ls-right">
+                <div class="product-top">
+                    <h4>Order ! </h4>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="products-row">
+                    <div class="col-xs-6 col-sm-12 product-grids">
+                        <div>
+                            <div class="flipper agile-products">
+                                <div>
+
+                                    <div class="col-xs-6 col-sm-6 contact-w3lsleft">
+                                        <div class="contact-grid agileits">
+                                            <h4>Order</h4>
+
+
+                                            <h5> {{ food.title }} | {{ foood.title }} </h5>
+                                            <br>
+                                            {{ include('messages.html.twig') }}
+                                            <form method="post" name="ordering" role="form" >
+
+                                                <div class="row">
+                                                    <div class="span8 form-group">
+                                                        Quantity:<br>
+                                                        <input type="number" id="quantity" name="quantity" value="{{ quantity }}"><br><br>
+                                                        <label for="ordering_name"></label><input type="text"
+                                                                                                  id="ordering_name"
+                                                                                                  name="ordering[name]"
+                                                                                                  placeholder="Name"
+                                                                                                  value="{{ app.user.name }}"
+                                                                                                  required="">
+                                                        <div class="validation"></div>
+                                                    </div>
+                                                    <div class="span8 form-group">
+                                                        <label for="ordering_surname"></label><input type="text"
+                                                                                                     id="ordering_surname"
+                                                                                                     name="ordering[surname]"
+                                                                                                     value="{{ app.user.surname }}"
+                                                                                                     placeholder="Surname"
+                                                                                                     required="">
+                                                        <div class="validation"></div>
+                                                    </div>
+                                                    <div class="span8 form-group">
+                                                        <label for="ordering_email"></label><input type="email"
+                                                                                                   id="ordering_email"
+                                                                                                   name="ordering[email]"
+                                                                                                   value="{{ app.user.email }}"
+                                                                                                   placeholder="Email"
+                                                                                                   required="">
+                                                        <div class="validation"></div>
+                                                    </div>
+                                                    <div class="span8 form-group">
+                                                        <label for="ordering_phone"></label><input type="text"
+                                                                                                   id="ordering_phone"
+                                                                                                   name="ordering[phone]"
+                                                                                                   placeholder="Phone Number">
+                                                        <div class="validation"></div>
+                                                    </div>
+                                                    <div class="span8 form-group">
+                                                        <label for="ordering_address"></label><textarea id="ordering_address"
+                                                                                                        name="ordering[address]"
+                                                                                                        placeholder="Address..."
+                                                                                                        required=""></textarea>
+                                                        <div class="validation"></div>
+                                                    </div>
+
+                                                    <div class="span8 form-group">
+                                                        <label for="ordering_message"></label><textarea id="ordering_message"
+                                                                                                        name="ordering[message]"
+                                                                                                        placeholder="Message..."
+                                                                                                        required=""></textarea>
+                                                        <div class="validation"></div>
+                                                    </div>
+
+                                                    <input type="hidden"  name="token"
+                                                           value="{{ csrf_token('form-order') }}"/>
+                                                    <input type="submit" value="Submit" aria-valuemax="KAYDET">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            {{ include('user/usermenu.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

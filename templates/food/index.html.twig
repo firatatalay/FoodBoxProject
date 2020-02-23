@@ -1,0 +1,95 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }}'s Foods{% endblock %}
+
+{% block body %}
+
+    <!-- breadcrumb -->
+    <div class="container">
+        <ol class="breadcrumb w3l-crumbs">
+            <li><a href=""><i class="fa fa-home"></i> Home</a></li>
+            <li class="active">{{ app.user.name }}'s Foods</li>
+        </ol>
+    </div>
+    <!-- //breadcrumb -->
+
+    <!-- products -->
+    <div class="products">
+        <div class="container">
+            <div class="col-md-9 product-w3ls-right">
+                <div class="product-top">
+                    <h4><img src="{{ asset('uploads/images/' ~ app.user.image) }}" height="30" class="img-circle"> {{ app.user.name }} {{ app.user.surname }} Foods</h4>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="products-row">
+                    <div class="col-xs-6 col-sm-12 product-grids">
+                        <div>
+                            <div class="flipper agile-products">
+                                <div>
+
+                                    <h4>Food List</h4>
+                                    <br>
+                                    <h4><a href="{{ path('user_food_new') }}" class="label label-info" >Create a New Food</a></h4>
+                                    <br>
+                                    <br>
+                                    <table class="table table-responsive">
+                                        <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Title</th>
+                                            <th>Keywords</th>
+                                            <th>Description</th>
+                                            <th>Image</th>
+                                            <th>Status</th>
+                                            <!--<th>Created_at</th>
+                                            <th>Updated_at</th>-->
+                                            <th>Gallery</th>
+                                            <th>actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for food in foods %}
+                                            <tr>
+                                                <td>{{ food.id }}</td>
+                                                <td>{{ food.title }}</td>
+                                                <td>{{ food.keywords }}</td>
+                                                <td>{{ food.description }}</td>
+                                                <td><img src="{{ asset('uploads/images/' ~ food.image) }}" height="40"></td>
+                                                <td>{{ food.status }}</td>
+                                                <td>
+                                                    <a href="javascript:openWin('{{ path('user_image_new',{'id' : food.id}) }}','','toolbar=no,location=no,directories=no,status=no,top=50,left=100,menuBar=no,scrollBar=yes,resizable=no,width=900,height=600'); ">
+                                                        <img src="{{ asset('assets/admin/images') }}/gallery.png" height="40">
+                                                    </a>
+
+                                                </td>
+
+
+                                                <!--<td>{{ food.createdAt ? food.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                                        <td>{{ food.updatedAt ? food.updatedAt|date('Y-m-d H:i:s') : '' }}</td>-->
+                                                <td>
+                                                    <h4><a href="{{ path('user_food_show', {'id': food.id}) }}" class="label label-info" >Show</a></h4>
+                                                </td>
+                                                <td>
+
+                                                    <h4><a href="{{ path('user_food_edit', {'id': food.id}) }}" class="label label-info" >Edit</a></h4>
+                                                </td>
+                                            </tr>
+                                        {% else %}
+                                            <tr>
+                                                <td colspan="9">no records found</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+
+            {{ include('user/usermenu.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

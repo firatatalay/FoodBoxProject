@@ -1,0 +1,65 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Messages List{% endblock %}
+
+{% block body %}
+
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- TABLO BAŞLANGICI-->
+                        <div class="map-data m-b-40">
+                            <h4>Messages List</h4>
+                            <br>
+                            <table class="table table-responsive">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Message</th>
+                                    <th>Status</th>
+                                    <th>Ip</th>
+                                    <th>Note</th>
+                                    <th>Created_at</th>
+                                    <th>Updated_at</th>
+                                    <th>actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for message in messages %}
+                                    <tr>
+                                        <td>{{ message.id }}</td>
+                                        <td>{{ message.name }}</td>
+                                        <td>{{ message.email }}</td>
+                                        <td>{{ message.message }}</td>
+                                        <td>{{ message.status }}</td>
+                                        <td>{{ message.ip }}</td>
+                                        <td>{{ message.note }}</td>
+                                        <td>{{ message.createdAt ? message.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                                        <td>{{ message.updatedAt ? message.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_messages_show', {'id': message.id}) }} class="btn btn-outline-success btn-sm"">show</a>
+                                            <a href="{{ path('admin_messages_edit', {'id': message.id}) }}" class="btn btn-outline-success btn-sm" >edit</a>
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="10">no records found</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                        <!-- TABLO SONU!-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

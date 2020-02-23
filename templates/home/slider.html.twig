@@ -1,0 +1,35 @@
+<!-- dishes -->
+<div class="banner">
+
+    <div class="container">
+<br>
+        <h3 class="w3ls-title">FoodBox Special Foods</h3>
+        <div class="spldishes-agileinfo">
+            <div class="col-md-3 spldishes-w3left">
+                <h5 class="w3ltitle">FoodBox Best Restaurants!</h5>
+                <p>Vero vulputate enim non justo posuere placerat </p>
+            </div>
+
+                <div class="col-md-9 spldishes-grids">
+                    <!-- Owl-Carousel -->
+                    <div id="owl-demo" class="owl-carousel text-center agileinfo-gallery-row">
+                        {% for rs in slider %}
+                        <a href="/" class="item g1">
+                            <a href="{{ path('food_show', {'id': rs.id}) }}" >
+                                <img src="{{ asset('uploads/images/' ~ rs.image) }}" class="lazyOwl" alt="" height="190px" width="280px">
+                            </a>
+                            <div class="agile-dish-caption">
+                                <h4>{{rs.title}}</h4>
+                                <span>{{rs.description}}</span>
+                            </div>
+                        </a>
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!-- //dishes -->
